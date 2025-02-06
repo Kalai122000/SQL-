@@ -1,0 +1,85 @@
+Employee Data
+
+CREATE TABLE Employees (
+    EmployeeID INT PRIMARY KEY AUTO_INCREMENT, -- Unique ID for each employee
+    Name VARCHAR(100) NOT NULL,               -- Employee's full name
+    Designation VARCHAR(50) NOT NULL,         -- Employee's job title
+    Location VARCHAR(100),                    -- Employee's work location
+    Salary DECIMAL(10, 2) NOT NULL,           -- Employee's salary
+    DateOfJoining DATE NOT NULL               -- Employee's joining date
+);
+
+
+INSERT INTO Employees (Name, Designation, Location, Salary, DateOfJoining)
+VALUES 
+('John Doe', 'Software Engineer', 'New York', 75000.00, '2021-05-15'),
+('Jane Smith', 'Product Manager', 'San Francisco', 90000.00, '2020-08-10'),
+('Alice Johnson', 'Data Analyst', 'Chicago', 65000.00, '2022-01-20');
+
+-- Update salary for an employee with EmployeeID = 1
+UPDATE Employees
+SET Salary = 80000.00
+WHERE EmployeeID = 1;
+
+-- Update designation and location for an employee with EmployeeID = 2
+UPDATE Employees
+SET Designation = 'Senior Product Manager', Location = 'Los Angeles'
+WHERE EmployeeID = 2;
+
+-- Delete employee with EmployeeID = 3
+DELETE FROM Employees
+WHERE EmployeeID = 3;
+
+
+-- Select all employees
+SELECT * FROM Employees;
+
+-- Select employees with a salary greater than 70000
+SELECT * FROM Employees
+WHERE Salary > 70000;
+
+-- Select employees who joined after 2021
+SELECT * FROM Employees
+WHERE DateOfJoining > '2021-01-01';
+
+-- Select employees by location
+SELECT * FROM Employees
+WHERE Location = 'New York';
+
+
+-- Get the total salary expenditure
+SELECT SUM(Salary) AS TotalSalaryExpenditure FROM Employees;
+
+-- Get the average salary of employees
+SELECT AVG(Salary) AS AverageSalary FROM Employees;
+
+-- Get the highest salary
+SELECT MAX(Salary) AS HighestSalary FROM Employees;
+
+-- Get the number of employees in each location
+SELECT Location, COUNT(*) AS EmployeeCount
+FROM Employees
+GROUP BY Location;
+
+
+-- Sort employees by salary in descending order
+SELECT * FROM Employees
+ORDER BY Salary DESC;
+
+-- Sort employees by date of joining in ascending order
+SELECT * FROM Employees
+ORDER BY DateOfJoining ASC;
+
+-- Filter employees by designation and sort by name
+SELECT * FROM Employees
+WHERE Designation = 'Software Engineer'
+ORDER BY Name;
+
+
+-- Add a new column for employee email
+ALTER TABLE Employees
+ADD COLUMN Email VARCHAR(100);
+
+-- Remove the Location column
+ALTER TABLE Employees
+DROP COLUMN Location;
