@@ -1,0 +1,9 @@
+WITH RECURSIVE starpattern AS (
+  SELECT 1 AS level, '*' AS Pattern 
+  UNION ALL 
+  SELECT level + 1, Pattern || '*' AS Pattern 
+  FROM starpattern
+  WHERE level < 5
+)
+SELECT Pattern
+FROM starpattern;
