@@ -1,0 +1,28 @@
+This program is used to create table, insert and update the values using PL/SQL 
+
+CREATE TABLE T1( 
+  e INTEGER, 
+  f INTEGER
+);
+
+DELETE FROM T1;
+
+INSERT INTO T1 VALUES(2, 4);
+
+DECLARE 
+  a NUMBER; 
+  b NUMBER;
+
+BEGIN 
+
+  SELECT e, f INTO a, b FROM T1 WHERE e > 1;
+  
+  DBMS_OUTPUT.PUT_LINE('a = ' || a);
+  DBMS_OUTPUT.PUT_LINE('b = ' || b);
+  
+  INSERT INTO T1 VALUES(b, a);
+  
+  DBMS_OUTPUT.PUT_LINE('Updated Inserted values: ' || b || ', ' || a);
+  
+END;
+/
