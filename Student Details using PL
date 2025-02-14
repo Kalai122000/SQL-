@@ -1,34 +1,34 @@
 
 CREATE TABLE students (
-    student_id INT PRIMARY KEY,
-    student_name VARCHAR2(100),
+    id INT PRIMARY KEY,
+    name VARCHAR2(100),
     department VARCHAR2(50),
-    mobile_number VARCHAR2(15)
+    mobile VARCHAR2(15)
 );
 
-INSERT INTO students (student_id, student_name, department, mobile_number) 
-VALUES (1, 'Alice Smith', 'Computer Science', '9876543210'),
-(2, 'Bob Johnson', 'Electrical Engineering', NULL),
-(3, 'Charlie Davis', 'Mechanical Engineering', '9123456789'),
-(4, 'David Clark', 'Physics', '9876432100'),
-(5, 'Eva White', 'Mathematics', NULL);
+INSERT INTO students (id, name, department, mobile) 
+VALUES (1, 'Archun', 'Computer Science', '9876543210'),
+(2, 'Vettaiyan', 'Electrical Engineering', NULL),
+(3, 'Leo', 'Mechanical Engineering', '9123456789'),
+(4, 'Virumandi', 'Information Technology', '9876432100'),
+(5, 'Kathavarayan', 'Aeronautical Engineering', NULL);
 
 DECLARE
     CURSOR stud_cursor IS
-        SELECT student_id, student_name, department, mobile_number
+        SELECT id, name, department, mobile
         FROM students;
 BEGIN
     
-    FOR student_record IN stud_cursor LOOP
-        DBMS_OUTPUT.PUT_LINE('Student ID: ' || student_record.student_id);
-        DBMS_OUTPUT.PUT_LINE('Name: ' || student_record.student_name);
-        DBMS_OUTPUT.PUT_LINE('Department: ' || student_record.department);
+    FOR record IN stud_cursor LOOP
+        DBMS_OUTPUT.PUT_LINE('Student ID: ' || record.id);
+        DBMS_OUTPUT.PUT_LINE('Name: ' || record.name);
+        DBMS_OUTPUT.PUT_LINE('Department: ' || record.department);
         
         
-        IF student_record.mobile_number IS NULL THEN
+        IF record.mobile IS NULL THEN
             DBMS_OUTPUT.PUT_LINE('Mobile Number: Not Available');
         ELSE
-            DBMS_OUTPUT.PUT_LINE('Mobile Number: ' || student_record.mobile_number);
+            DBMS_OUTPUT.PUT_LINE('Mobile Number: ' || record.mobile);
         END IF;
         
         DBMS_OUTPUT.PUT_LINE('--------------------------------------');
