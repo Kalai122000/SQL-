@@ -1,0 +1,24 @@
+CREATE TABLE T2 (
+    a INTEGER,
+    b CHAR(10)
+);
+
+CREATE PROCEDURE addtuple2( x IN T2.a%TYPE, y IN T2.b%TYPE) AS
+
+BEGIN
+    INSERT INTO T2(a, b) VALUES(x, y);
+    
+    DBMS_OUTPUT.PUT_LINE('Inserted: a = ' || x || ', b = ' || y);
+
+END addtuple2;
+/
+
+BEGIN
+
+    addtuple2(10, 'abc');
+
+    DBMS_OUTPUT.PUT_LINE('Procedure executed successfully.');
+
+END;
+
+/
