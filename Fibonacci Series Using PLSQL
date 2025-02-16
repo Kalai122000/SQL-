@@ -2,29 +2,73 @@ CREATE OR REPLACE FUNCTION fibonacci(n IN INTEGER) RETURN INTEGER IS
     a INTEGER := 0;
     b INTEGER := 1;
     temp INTEGER;
+
 BEGIN
     IF n = 0 THEN
         RETURN a;
+
     ELSIF n = 1 THEN
         RETURN b;
+
     ELSE
         FOR i IN 2..n LOOP
             temp := a + b;
             a := b;
             b := temp;
         END LOOP;
+
         RETURN b;
+
     END IF;
+
 END fibonacci;
 /
 
 DECLARE
+
     limit INTEGER := 10; 
-    fib_num INTEGER;
+    num INTEGER;
+
 BEGIN
     FOR i IN 0..limit-1 LOOP
-        fib_num := fibonacci(i);  
-        DBMS_OUTPUT.PUT_LINE('Fibonacci(' || i || ') = ' || fib_num);
+
+        num := fibonacci(i);  
+        DBMS_OUTPUT.PUT_LINE(num);
+
     END LOOP;
+
+END;
+/
+===============================USING POCEDURE===================================================================
+
+CREATE OR REPLACE PROCEDURE series(limit IN INTEGER) IS
+    a INTEGER := 0;  
+    b INTEGER := 1;  
+    temp INTEGER;
+
+BEGIN
+
+    IF limit > 0 THEN
+
+        DBMS_OUTPUT.PUT_LINE(a);
+    END IF;
+
+    IF limit > 1 THEN
+        DBMS_OUTPUT.PUT_LINE(b);
+    END IF;
+
+    FOR i IN 2..limit-1 LOOP
+        temp := a + b;
+        a := b;  
+        b := temp;  
+
+        DBMS_OUTPUT.PUT_LINE(temp);
+
+    END LOOP;
+
+END series;
+/
+BEGIN
+    series(10);
 END;
 /
